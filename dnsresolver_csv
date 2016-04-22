@@ -1,0 +1,26 @@
+import csv
+import dns.resolver
+import dns.exception
+with open('test.csv') as file1:
+	#With context allows for the file to be opened and closed safely.
+	read1 = csv.reader(file1) # init csv reader using the above file variable
+	for row in read1:print row[0]# print the domain name from the csv file, eg "google.ie"
+	try: var = None # clear variable between loop iterations
+	var = dns.resolver.query(row[0],'A')
+except dns.resolver.NoAnswer
+                        # No IPv4 and no IPv6
+                        pass
+                        # capture all DNS exceptions that derive from this:
+                        # NoAnswer, NXDOMAIN,
+                        # learn more with 'pydoc dns.resolver'
+			pass
+			
+		if not var:
+			# if no DNS answer was given, then this didnt resolve properly, move along continue
+		# the dns.resolver.Answer class has all the IP's in
+		# the rrest attribute. all of this is available
+		# via 'pydoc dns.resolver'
+		for rr in var.rrset:
+			print rr
+			
+			#Still Testing
